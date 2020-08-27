@@ -1,17 +1,21 @@
-public class EmpWageBuilderUC5{
+public class EmpWageBuilder{
 	//Constants
         public static final int isPartTime=1;
         public static final int isFullTime=2;
         public static final int EMP_RATE_PER_HR=20;
         public static final int NUM_OF_WORKING_DAYS=20;
+        public static final int maxHour=100;
 
         public static void main(String args[]){
 		//Variables
                 int empHours=0;
-                int empWagesPerDay=0;
+                int totalEmpHour=0;
+                int totalWorkingDays=0;
                 int totalEmpWage=0;
 
-                for(int day=1;day<NUM_OF_WORKING_DAYS;day++){
+                while(totalEmpHour <= maxHour && totalWorkingDays < NUM_OF_WORKING_DAYS){
+                        totalWorkingDays++;
+			//random method
                         int randomCheck=(int)Math.floor(Math.random()*10)%3;
 
                         switch(randomCheck){
@@ -28,12 +32,12 @@ public class EmpWageBuilderUC5{
                                         empHours=0;
                                         break;
                         }
-			//Computation
-                        empWagesPerDay=empHours*EMP_RATE_PER_HR;
-                        totalEmpWage+=empWagesPerDay;
-
+			//computation
+                        totalEmpHour+=empHours;
+                        System.out.println("Day:"+totalWorkingDays+" Emp Hours:"+ empHours);
                 }
-
-                System.out.println("Monthly salary of employee: "+totalEmpWage);
+		//computation
+                totalEmpWage=totalEmpHour*EMP_RATE_PER_HR;
+                System.out.println("Salary of employee: "+totalEmpWage);
         }
 }
