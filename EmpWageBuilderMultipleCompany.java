@@ -5,7 +5,7 @@ public class EmpWageBuilderMultipleCompany {
         private int maxHrsInMonth;
 
         /**
-        *added 1 new instance variable above ie.companyName and initialized
+        *instance variable initialized with constructor
         */
         public EmpWageBuilderMultipleCompany(final String companyName,final int empRate, final int numberofWorkingDays,final int maxHrsInMonth) {
                 this.companyName=companyName;
@@ -26,7 +26,6 @@ public class EmpWageBuilderMultipleCompany {
         }
 
         /**
-        *changed methodname to computeEmpWage
         *@return totalWage
         */
         public int computeEmpWage() {
