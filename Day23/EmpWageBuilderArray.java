@@ -1,4 +1,5 @@
 import java.util.*;
+
 interface IComputeEmpWage{
         public void addCompanyEmpWage( String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth );
         public void computeEmpWage();
@@ -37,9 +38,11 @@ public class EmpWageBuilderArray implements IComputeEmpWage {
 
         private int numOfCompany = 0;
         private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
+        private ArrayList<Integer> dailyWageList;
 
         public EmpWageBuilderArray() {
                 companyEmpWageArrayList = new ArrayList<>();
+                dailyWageList = new ArrayList<>();
         }
 
         public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth) {
@@ -49,6 +52,14 @@ public class EmpWageBuilderArray implements IComputeEmpWage {
 
         public void computeEmpWage() {
                 for (int i = 0; i < companyEmpWageArrayList.size(); i++){
+                        CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
+                        companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+                        System.out.println(companyEmpWage);
+                }
+        }
+
+        public void computeDailyWage() {
+                for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
                         CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
                         companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
                         System.out.println(companyEmpWage);
@@ -74,15 +85,15 @@ public class EmpWageBuilderArray implements IComputeEmpWage {
                empHrs = 0;
          }
          totalEmpHrs += empHrs;
-         System.out.println("Day#: " + totalWorkingDays + "Employee Hours: " + empHrs);
+         System.out.println("Day: " + totalWorkingDays + "Employee Hours: " + empHrs);
       }
       return totalEmpHrs * companyEmpWage.empRatePerHours;
    }
 
         public static void main(String[] args) {
                 EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
-                empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
-                empWageBuilder.addCompanyEmpWage("Reliance", 15, 20, 100);
+                empWageBuilder.addCompanyEmpWage("TATA", 20, 20, 100);
+                empWageBuilder.addCompanyEmpWage("BATA", 15, 20, 100);
                 empWageBuilder.computeEmpWage();
         }
 }
